@@ -17,10 +17,11 @@ def get_list_of_dates(month: (int | None) = None, increment: int = 3) -> list[Da
         today = (datetime.date(year=year, month=(month % 12) + 1, day=1) + datetime.timedelta(days=-1))
     for i in range(1, today.day + 1, increment + 1):
         date_begin = datetime.date(day=i, month=today.month, year=today.year)
-        try:
+        month_end_day = (datetime.date(year=year, month=(today.month % 12) + 1, day=1) + datetime.timedelta(days=-1)).day
+        if i+increment < month_end_day:
             date_end = datetime.date(day=i+increment, month=today.month, year=today.year)
-        except ValueError:
-            date_end = datetime.date(year=year, month=(month % 12) + 1, day=1) + datetime.timedelta(days=-1)
+        else:
+            date_end = datetime.date(year=year, month=today.month, day=month_end_day)
         if i + increment > today.day:
             date_end = datetime.date(day=today.day, month=today.month, year=today.year)
         date = DatesOfDocuments(
