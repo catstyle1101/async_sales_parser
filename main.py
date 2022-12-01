@@ -20,10 +20,18 @@ from utils.timer import timer
 
 @timer
 def main():
+    """
+    Создает рейтинг продаж менеджеров до определенной даты.
+
+    Использование:
+    python main.py - рейтинг до текущей даты
+    python main.py 1 - выгрузка продаж определенного месяца
+    """
+    arg = int(sys.argv[1]) if len(sys.argv) > 1 else None
     load_dotenv()
     create_logger()
     base = DataBase()
-    list_of_dates = get_list_of_dates(increment=DATE_INCREMENT)
+    list_of_dates = get_list_of_dates(month= arg, increment=DATE_INCREMENT)
     check_list = list()
     list_of_sales = dict()
     managers_dict = {manager.prefix: manager for manager in base.get_all_managers()}
