@@ -1,15 +1,14 @@
-import json
 import datetime
+import json
 import logging
 from typing import ValuesView
 
-from config import LOGIN, MAN_ID, BASE_URL
+from config import BASE_URL, LOGIN, MAN_ID
 from database.database import DataBase, Prefix
-from errors.errors import TooManyDocumentsError
-from utils.date_creator import DatesOfDocuments
-from sale.sale_calculator import Sale
 from database.models import Manager
-
+from errors.errors import TooManyDocumentsError
+from sale.sale_calculator import Sale
+from utils.date_creator import DatesOfDocuments
 
 INDEX_IPRO = 1
 INDEX_NUMDOC = 2

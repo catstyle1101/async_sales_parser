@@ -5,7 +5,6 @@ from enum import Enum
 from statistics import median
 
 from database.database import DataBase
-
 from database.models import Manager
 
 

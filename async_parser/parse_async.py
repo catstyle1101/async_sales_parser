@@ -5,14 +5,8 @@ from typing import NamedTuple
 import aiohttp
 import tqdm
 
-from config import (
-    BASE_URL,
-    BASE_DOMAIN,
-    LOGIN,
-    PASSWORD,
-    MAN_ID,
-    SEMAPHORE_VALUE
-)
+from config import (BASE_DOMAIN, BASE_URL, LOGIN, MAN_ID, PASSWORD,
+                    SEMAPHORE_VALUE)
 
 
 class DatesOfDocuments(NamedTuple):

@@ -5,8 +5,8 @@ from sqlalchemy import and_, create_engine, select
 from sqlalchemy.orm import Session
 
 from config import DB_ADDRESS
-from errors.errors import ManagerNotFoundError
 from database.models import Manager
+from errors.errors import ManagerNotFoundError
 
 
 class Prefix:

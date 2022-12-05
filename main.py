@@ -3,18 +3,15 @@ import sys
 
 from dotenv import load_dotenv
 
+from async_parser.parse_async import scrap_urls
+from async_parser.parser import (create_urls_for_sales,
+                                 create_urls_for_scrap_manager, parse_json,
+                                 process_manager_scrapping)
 from config import DATE_INCREMENT
 from database.database import DataBase
-from utils.date_creator import get_list_of_dates
-from async_parser.parse_async import scrap_urls
-from async_parser.parser import (
-    create_urls_for_sales,
-    create_urls_for_scrap_manager,
-    parse_json,
-    process_manager_scrapping
-)
 from sale.sale_calculator import calculate_full_rating
 from sale.sale_formatter import format_data_rating
+from utils.date_creator import get_list_of_dates
 from utils.timer import timer
 
 
