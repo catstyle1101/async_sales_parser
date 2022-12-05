@@ -5,7 +5,14 @@ from typing import NamedTuple
 import aiohttp
 import tqdm
 
-from config import BASE_URL, BASE_DOMAIN, LOGIN, PASSWORD, MAN_ID
+from config import (
+    BASE_URL,
+    BASE_DOMAIN,
+    LOGIN,
+    PASSWORD,
+    MAN_ID,
+    SEMAPHORE_VALUE
+)
 
 
 class DatesOfDocuments(NamedTuple):
@@ -25,7 +32,6 @@ async def _fetch(url: str, session: aiohttp.ClientSession, semaphore, headers, t
 
 
 async def _scrap_list_of_urls(urls: list[str], to_json) -> list[str]:
-    SEMAPHORE_VALUE = 200
     headers = {
         'authority': BASE_DOMAIN,
         'accept': 'application/json, text/javascript, */*; q=0.01',
