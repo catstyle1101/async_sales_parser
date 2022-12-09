@@ -1,5 +1,5 @@
 import datetime
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 from dataclasses import dataclass
 from enum import Enum
 from statistics import median
@@ -14,7 +14,7 @@ class Specialisation(namedtuple('Specialisation', 'name threshold'), Enum):
     B2B_CLIENT = 'МОПП', 50000
 
 
-@dataclass()
+@dataclass
 class Sale:
     int_number: str
     number: str
@@ -25,19 +25,16 @@ class Sale:
     manager: Manager
 
 
+
 def calculate_sales(data: list[Sale]) -> dict:
     """Calculate a dictionary of all sales, group by manager
     result: {'manager_1_name': {'client_1_name': sum_of_sales_1, 'client_2_name': sum_of_sales_2 ...},
     'manager_2_name': {...} ...} ."""
-    result = dict()
+    result = defaultdict(dict)
     for sale in data:
-        if result.get(sale.manager):
-            if result[sale.manager].get(sale.client):
-                result[sale.manager][sale.client] += int(sale.sum_doc)
-            else:
-                result[sale.manager].update({sale.client: int(sale.sum_doc)})
-        else:
-            result[sale.manager] = {sale.client: int(sale.sum_doc)}
+        if not result[sale.manager]:
+            result[sale.manager] = defaultdict(int)
+        result[sale.manager][sale.client] += int(sale.sum_doc)
     return result
 
 
